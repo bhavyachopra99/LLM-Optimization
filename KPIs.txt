@@ -1,0 +1,17 @@
+Perplexity: Measures how well the model predicts a sample. Lower perplexity indicates better performance.
+
+Cross-Entropy Loss: Evaluates the difference between the predicted and actual distributions. Lower values indicate better performance.
+
+BLEU Score: Assesses the quality of generated text compared to reference text, particularly in translation tasks. Higher BLEU scores indicate better performance.
+
+Inference Time: The time taken by the model to generate predictions. Shorter inference times are preferable.
+
+GPU Memory Usage: The amount of GPU memory utilized during training and inference. Lower memory usage is better, especially for scalability.
+
+Accuracy: For tasks like classification, measures the percentage of correct predictions. Higher accuracy is better.
+
+Model Size (Parameters): The number of parameters in the model. Smaller models with competitive performance are preferable for efficiency.
+
+Training Time: The total time taken to train the model. Faster training times are preferable.
+
+Scalability: Ability to scale the model for larger datasets or tasks. This includes considerations of both computational efficiency and memory usage.
