@@ -40,8 +40,8 @@ def preprocess_function(examples):
     return model_inputs
 
 # Take 10% of both train and validation datasets
-sample_size_train = int(len(tokenized_datasets['train']) * 0.001)
-sample_size_eval = int(len(tokenized_datasets['validation']) * 0.01)
+sample_size_train = int(len(tokenized_datasets['train']) * 0.01)
+sample_size_eval = int(len(tokenized_datasets['validation']) * 0.1)
 
 tokenized_train_dataset = tokenized_datasets['train'].shuffle(seed=42).select(range(sample_size_train)).map(preprocess_function, batched=True)
 tokenized_eval_dataset = tokenized_datasets['validation'].shuffle(seed=42).select(range(sample_size_eval)).map(preprocess_function, batched=True)
@@ -116,8 +116,8 @@ def normal_fine_tuning():
         output_dir="./results_baseline",
         evaluation_strategy="epoch",
         learning_rate=2e-5,
-        per_device_train_batch_size=8,
-        per_device_eval_batch_size=8,
+        per_device_train_batch_size=16,
+        per_device_eval_batch_size=16,
         num_train_epochs=10,
         weight_decay=0.01,
         save_strategy="no",  # Disable checkpointing
@@ -163,7 +163,7 @@ def low_rank_approximation(layer, rank):
     layer.weight.data = torch.tensor(low_rank_matrix, device=layer.weight.device)
 
 # Low-rank fine-tuning function
-def low_rank_fine_tuning(rank=10):
+def low_rank_fine_tuning(rank):
     tracemalloc.start()
     low_rank_model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-base")
 
@@ -213,7 +213,7 @@ def low_rank_fine_tuning(rank=10):
     }
 
 # Ranks for experimentation
-ranks = [50]
+ranks = [1, 2, 5, 10, 20, 30, 40, 50, 75, 100]
 
 # List to store all results
 results_list = []
@@ -247,10 +247,11 @@ for rank in ranks:
         'Current Memory Usage (MB)': low_rank_metrics['memory_current'],
         'Peak Memory Usage (MB)': low_rank_metrics['memory_peak']
     })
+    print(results_list)
 
 # Convert results to DataFrame for analysis
 results_df = pd.DataFrame(results_list)
 print(results_df)
 
 # Save the results to CSV
-results_df.to_csv('model_results.csv', index=False)
+results_df.to_csv('ollama_ranks1to10.csv', index=False)
