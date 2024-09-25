@@ -115,3 +115,6 @@ events.out.tfevents.*
 # Windows specific
 Thumbs.db
 GuruCool-API/
+/distilgpt2_fine_tuned_rank_0
+/results_baseline
+/results_low_rank
