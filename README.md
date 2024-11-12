@@ -1,5 +1,11 @@
 # LLM-Optimization
-Contains code and resources for optimizing large language models using multi-degree low-rank approximations. Includes Python scripts for model fine-tuning with Hugging Face Transformers, low-rank approximation implementation, performance comparisons (perplexity, BLEU score), and instructions for various hardware setups.
+This repository contains code and resources for optimizing large language models (LLMs) using multi-degree low-rank approximations. The goal is to explore and enhance model efficiency without compromising performance. The code is implemented in Python, utilizing the Hugging Face Transformers library for model fine-tuning.
 
-# (Low-Rank Fine-Tuning for Sequence-to-Sequence Language Models)[BART_Tokenizer_optimizaiton.py]
-This script implements baseline and low-rank approximation fine-tuning of a BART model for sequence-to-sequence tasks using the wmt16 dataset for English-to-Romanian translation. The script measures the effects of low-rank approximation on BLEU score, perplexity, memory usage, and training time, comparing different ranks.
+## Contents
+Model Fine-Tuning Scripts: Python scripts to fine-tune models with both baseline and low-rank approximations.
+Low-Rank Approximation: Code for applying low-rank approximations to model layers, aimed at reducing computational requirements.
+Performance Metrics: Evaluation metrics, including perplexity and BLEU score, for comparing baseline and low-rank models.
+Hardware Setup Instructions: Guidelines for running the scripts on various hardware configurations.
+## Scripts
+[Low-Rank Fine-Tuning for Sequence-to-Sequence Language Models](BART_Tokenizer_optimizaiton.py)
+This script demonstrates both baseline and low-rank fine-tuning of a BART model on the wmt16 dataset for English-to-Romanian translation tasks. Key metrics measured include BLEU score, perplexity, memory usage, and training time, with comparisons across different ranks in low-rank approximations.
